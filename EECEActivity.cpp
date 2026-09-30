@@ -44,22 +44,61 @@ int main(void) {
     //     cout << "invalid operation code" << endl;
 
     // }
-    int grade;
-    cout << "please enter your numerical grade: ";
-    cin >> grade;
-    if (grade >= 90) {
-        cout << "your letter grade is: A";
-    } else if (grade >= 80) {
-        cout << "your letter grade is: B";
-    } else if (grade >= 70) {
-        cout << "your letter grade is: c";
-    } else if (grade >= 60) {
-        cout << "your letter grade is: D";
-    }else {
-        cout << "your letter grade is: F";
-    }
+    // float grade; //float is 4 bytes of mem, double is 8 bytes of mem
+    // cout << "please enter your numerical grade: ";
+    // cin >> grade;
+    // if (grade > 100 || grade <0) {
+    //     cout << "The given grade of \"" << grade << "\" is out of range." << endl;
+    // } else if (grade >= 90) {
+    //     cout << "your letter grade is: A";
+    // } else if (grade >= 80) {
+    //     cout << "your letter grade is: B";
+    // } else if (grade >= 70) {
+    //     cout << "your letter grade is: c";
+    // } else if (grade >= 60) {
+    //     cout << "your letter grade is: D";
+    // }else {
+    //     cout << "your letter grade is: F";
+    // }
 
-    cout << endl;
+    // cout << endl;
 
-    return 0;
+    // return 0;
+
+// A && B is short circuit and/or. if A in A&&B is false, then B 
+// will not be evaluated. if A in A||B is true, then B will not
+// be evaluated because there is no need to evaluate B.
+
+// test question, when you write else if (condition) without the currly braces, the next statement will be executed if the condition is true, but everything else after that it will be executed regardless of the condition. So it is a good practice to always use curly braces for if/else statements.
+// char shape;
+// float lr;
+// float pi = 3.14;
+// float area;
+
+// cout << "Do you want to find the area of a square (s) or circle (c)" << endl;
+// cin >> shape;
+// cout << "please input the length of the square or radius of the circle" << endl;
+// cin >> lr;
+
+// if (shape == 's') {
+//     area = (lr * lr);
+// } else if (shape == 'c') {
+//     area = pi * (lr*lr);
+// } else 
+//     cout << "you entered an invalid shape " << shape << endl;
+
+// if (shape == 's') {
+//     cout << "the area of the square is " << area << endl;
+// } else if (shape == 'c')
+//     cout << "the area of the circle is " << area << endl;
+
+int x = 12, result;
+// if (x>0)
+//     result = 1;
+// else 
+//     result = -1;
+result = (x>0) ? 1 : -1
+cout << "x = " << x << " | result = " << result << endl;
+
+
 }
