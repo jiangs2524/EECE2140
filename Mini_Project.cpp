@@ -7,21 +7,7 @@ using namespace std;
 
 
 
-string display_course(int t_pos, int h_pos, string& course) {
-    for(int i = 1; i < 61; i++) {
-        if(t_pos == h_pos && i == h_pos)
-            course += "OUCH!!!";
-        else if(i == t_pos)
-            course += "T";
-        else if(i == h_pos)
-            course += "h";
-        else
-            course += "-";
-    }
 
-    cout << course;
-
-}
 
 int tortoise_move(int& h_curpos) {
     int upper = 100;
@@ -69,10 +55,26 @@ int hare_move(int t_curpos) {
 
 }
 
+string display_course(int t_pos, int h_pos, string& course) {
+    for(int i = 1; i < 61; i++) {
+        if(t_pos == h_pos && i == h_pos)
+            course += "OUCH!!!";
+        else if(i == t_pos)
+            course += "T";
+        else if(i == h_pos)
+            course += "h";
+        else
+            course += "-";
+    }
+
+    cout << course;
+
+}
+
 int main() {
     srand(time(0));
-
     cout << "BANG! AND THEY'RE OFF!!!!!" << endl;
+    display_course()
 
 
 
