@@ -5,77 +5,85 @@
 #include <string>
 using namespace std;
 
-
-
-
-
-int tortoise_move(int& h_curpos) {
-    int upper = 100;
-    int lower = 1;
-    int h_movement;
-
-    h_movement = rand() % (upper - lower + 1) + lower;
-    if(h_movement <= 10) {
-        cout << "Sleep" << endl;
-        return h_curpos;
-    } else if (h_movement <= 30) {
-        cout << "Big Hop" << endl;
-        return (h_curpos += 8);
-    } else if (h_movement <= 40) {
-        cout << "Big Slip" << endl;
-        return (h_curpos += -10);
-    } else if (h_movement <= 80) {
-        cout << "Small Hop" << endl;
-        return (h_curpos += 1);
-    } else if (h_movement <= 100) {
-        cout << "Small Slip" << endl;
-        return (h_curpos += -2);
-    }
-}
-
-int hare_move(int t_curpos) {
-    int upper = 120;
-    int lower = 1;
-    int t_movement;
-
-    t_movement = rand() % (upper - lower + 1) + lower;
-    if(t_movement <= 36) {
-        cout << "fast plod" << endl;
-        return (t_curpos += 3);
-    } else if (t_movement <= 60) {
-        cout << "slip" << endl;
-        return (t_curpos += -6);
-    } else if (t_movement <= 120) {
-        cout << "slow plod" << endl;
-        return (t_curpos += 1);
+void tortoise_move(int& t_curpos) {
+    int movement = rand() % 100 + 1;
+    
+    if (movement <= 50) {
+        cout << "Tortoise: Fast Plod" << endl;
+        t_curpos += 3;
+    } else if (movement <= 70) {
+        cout << "Tortoise: Slip" << endl;
+        t_curpos -= 6;
+    } else {
+        cout << "Tortoise: Slow Plod" << endl;
+        t_curpos += 1;
     }
 
-    
-    
-
+    if (t_curpos < 0) t_curpos = 0; 
 }
 
-string display_course(int t_pos, int h_pos, string& course) {
-    for(int i = 1; i < 61; i++) {
-        if(t_pos == h_pos && i == h_pos)
-            course += "OUCH!!!";
-        else if(i == t_pos)
-            course += "T";
-        else if(i == h_pos)
-            course += "h";
+void hare_move(int& h_curpos) {
+    int movement = rand() % 100 + 1;
+
+    if (movement <= 20) {
+        cout << "Hare: Sleep" << endl;
+    } else if (movement <= 40) {
+        cout << "Hare: Big Hop" << endl;
+        h_curpos += 9;
+    } else if (movement <= 50) {
+        cout << "Hare: Big Slip" << endl;
+        h_curpos -= 12;
+    } else if (movement <= 80) {
+        cout << "Hare: Small Hop" << endl;
+        h_curpos += 1;
+    } else {
+        cout << "Hare: Small Slip" << endl;
+        h_curpos -= 2;
+    }
+
+    if (h_curpos < 0) h_curpos = 0; 
+}
+
+void display_course(int t_pos, int h_pos, string array[], int size) {
+    for (int i = 0; i < size; i++) {
+        if (i == t_pos && i == h_pos)
+            array[i] = "OUCH!!!";
+        else if (i == t_pos)
+            array[i] = "T";
+        else if (i == h_pos)
+            array[i] = "H";
         else
-            course += "-";
+            array[i] = "-";
     }
+}
 
-    cout << course;
-
+void print_array(string array[], int size) {
+    for (int k = 0; k < size; k++) {
+        cout << array[k];
+    }
+    cout << endl; 
 }
 
 int main() {
     srand(time(0));
+    int h_curpos = 0, t_curpos = 0, size = 60;
+    string array1[60];
+    
     cout << "BANG! AND THEY'RE OFF!!!!!" << endl;
-    display_course()
+    
+    while (h_curpos < 59 && t_curpos < 59) {
+        tortoise_move(t_curpos);
+        hare_move(h_curpos);
+        display_course(t_curpos, h_curpos, array1, size);
+        print_array(array1, size);
+    }
 
+    if (t_curpos >= 59 && h_curpos >= 59)
+        cout << "IT'S A TIE!" << endl;
+    else if (t_curpos >= 59)
+        cout << "TORTOISE WINS!!! YAY!!!" << endl;
+    else
+        cout << "HARE WINS. YUCH." << endl;
 
-
+    return 0;
 }
