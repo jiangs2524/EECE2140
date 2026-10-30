@@ -65,25 +65,38 @@ void print_array(string array[], int size) {
 }
 
 int main() {
+    int tie = 0, h_win = 0, t_win = 0;
     srand(time(0));
-    int h_curpos = 0, t_curpos = 0, size = 60;
-    string array1[60];
-    
-    cout << "BANG! AND THEY'RE OFF!!!!!" << endl;
-    
-    while (h_curpos < 59 && t_curpos < 59) {
-        tortoise_move(t_curpos);
-        hare_move(h_curpos);
-        display_course(t_curpos, h_curpos, array1, size);
-        print_array(array1, size);
+    for(int i = 0; i < 50; i++) {
+        
+        int h_curpos = 0, t_curpos = 0, size = 60;
+        string array1[60];
+        
+        cout << "BANG! AND THEY'RE OFF!!!!!" << endl;
+        
+        while (h_curpos < 59 && t_curpos < 59) {
+            tortoise_move(t_curpos);
+            hare_move(h_curpos);
+            display_course(t_curpos, h_curpos, array1, size);
+            print_array(array1, size);
+        }
+
+        if (t_curpos >= 59 && h_curpos >= 59) {
+            cout << "IT'S A TIE!" << endl;
+            tie += 1;
+        }else if (t_curpos >= 59) {
+            cout << "TORTOISE WINS!!! YAY!!!" << endl;
+            t_win += 1;
+        }
+        else {
+            cout << "HARE WINS. YUCH." << endl;
+            h_win += 1;
+        }
+
     }
 
-    if (t_curpos >= 59 && h_curpos >= 59)
-        cout << "IT'S A TIE!" << endl;
-    else if (t_curpos >= 59)
-        cout << "TORTOISE WINS!!! YAY!!!" << endl;
-    else
-        cout << "HARE WINS. YUCH." << endl;
-
+    cout << "The turtle won " << t_win << " times." << endl;
+    cout << "There was a tie " << tie << " times." << endl;
+    cout << "The hare won " << h_win << " times." << endl;
     return 0;
 }
